@@ -1,4 +1,10 @@
 {
+  "rewrites": [
+    {
+      "source": "/graphql/:path*",
+      "destination": "https://publish-p144258-e1488419.adobeaemcloud.com/graphql/:path*"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
