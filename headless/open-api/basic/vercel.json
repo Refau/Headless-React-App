@@ -3,8 +3,10 @@
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Frame-Options", "value": "ALLOWALL" },
-        { "key": "Content-Security-Policy", "value": "frame-ancestors *" }
+        {
+          "key": "Content-Security-Policy",
+          "value": "frame-ancestors 'self' https://experience.adobe.com https://universal-editor-service.adobe.io https://author-p144258-e1488419.adobeaemcloud.com/ui#/@adobedemoemea145/aem/universal-editor/canvas/"
+        }
       ]
     }
   ]
