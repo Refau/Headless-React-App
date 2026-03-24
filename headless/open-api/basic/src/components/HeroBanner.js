@@ -58,7 +58,7 @@ export default function HeroBanner({ path = HERO_PATH }) {
 
         {hero.cta && (
           <a
-            href="#"
+            href={hero.cta || '/'}
             className="hero-banner__cta button"
             data-aue-prop="cta"
             data-aue-type="text"
