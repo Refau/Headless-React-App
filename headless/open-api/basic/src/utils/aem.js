@@ -7,10 +7,6 @@ const HERO_PATH = process.env.REACT_APP_HERO_PATH || '/content/dam/engiexwalk/en
 
 export { AEM_AUTHOR, AEM_PUBLISH, ARTICLES_FOLDER, PROMOTION_PATH, PROMOTIONS_FOLDER, HERO_PATH }
 
-const AEM_AUTH = process.env.REACT_APP_AEM_AUTH
-  ? `Basic ${btoa(process.env.REACT_APP_AEM_AUTH)}`
-  : null
-
 async function fetchAEM(url) {
   const res = await fetch(`${url}&_t=${Date.now()}`, { cache: 'no-store' })
   if (!res.ok) throw new Error(`AEM error: ${res.status}`)
