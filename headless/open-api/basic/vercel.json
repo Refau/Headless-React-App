@@ -5,7 +5,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "frame-ancestors 'self' https://author-p144258-e1488419.adobeaemcloud.com/ui#/@adobedemoemea145/aem/universal-editor/canvas"
+          "value": "frame-ancestors 'self' https://author-p144258-e1488419.adobeaemcloud.com/ui"
         }
       ]
     }
