@@ -53,16 +53,9 @@ export async function fetchArticleByPath(path, variation = 'master') {
 }
 
 export async function fetchHeroBanner(path = HERO_PATH, variation = 'master') {
-  const url = query('HeroByPath', { path, variation })
-  try {
-    const json = await fetchAEM(url)
-    return json?.data?.heroBannerByPath?.item || null
-  } catch {
-    // fallback to wrapper if direct call fails (e.g. CORS on Vercel)
-    const graphQLPath = `${AEM_PUBLISH}/graphql/execute.json/ref-demo-eds/HeroByPath`
-    const json = await callWrapper(graphQLPath, path, variation)
-    return json?.data?.heroBannerByPath?.item || null
-  }
+  const graphQLPath = `${AEM_PUBLISH}/graphql/execute.json/ref-demo-eds/HeroByPath`
+  const json = await callWrapper(graphQLPath, path, variation)
+  return json?.data?.heroBannerByPath?.item || null
 }
 
 export async function fetchPromotion(path = PROMOTION_PATH, variation = 'master') {
