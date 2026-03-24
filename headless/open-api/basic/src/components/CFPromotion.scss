@@ -1,0 +1,108 @@
+@import '../styles/variables';
+
+@keyframes shimmer {
+  0%   { background-position: -800px 0; }
+  100% { background-position:  800px 0; }
+}
+
+// ── Banner ───────────────────────────────────────────────────────────────────
+.cf-promo {
+  width: 100%;
+  min-height: 420px;
+  background-color: $engie-dark-blue;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  padding: 60px $gutter-padding;
+}
+
+.cf-promo__content {
+  max-width: $max-width;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 640px;
+  padding-left: calc((100vw - #{$max-width}) / 2);
+  padding-left: max(#{$gutter-padding}, calc((100vw - #{$max-width}) / 2));
+}
+
+.cf-promo__title {
+  color: $white;
+  font-size: 36px;
+  font-weight: $font-weight-bold;
+  margin: 0 0 8px;
+  line-height: 1.2;
+
+  &::after {
+    content: '';
+    display: block;
+    height: 4px;
+    width: 80px;
+    background-color: $white;
+    margin-top: 12px;
+  }
+}
+
+.cf-promo__subtitle {
+  color: $white;
+  font-size: $font-size-large;
+  font-weight: $font-weight-normal;
+  margin: 16px 0 12px;
+}
+
+.cf-promo__description {
+  color: rgba($white, 0.85);
+  font-size: $font-size-base;
+  line-height: 1.6;
+  margin: 0 0 28px;
+  max-width: 520px;
+}
+
+.cf-promo__cta {
+  display: inline-block;
+  background-color: $white;
+  color: $engie-dark-blue;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-base;
+  padding: 12px 28px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+
+  &:hover {
+    background-color: $engie-blue;
+    color: $white;
+  }
+}
+
+// ── Skeleton ─────────────────────────────────────────────────────────────────
+.cf-promo--skeleton {
+  background: linear-gradient(90deg, #17255f 25%, #1e2e75 50%, #17255f 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite linear;
+}
+
+.cf-promo__skeleton-line {
+  border-radius: 4px;
+  background: rgba($white, 0.1);
+  margin-bottom: 16px;
+
+  &--title   { height: 36px; width: 60%; }
+  &--subtitle { height: 22px; width: 45%; }
+  &--desc    { height: 16px; width: 70%; }
+  &--cta     { height: 44px; width: 140px; border-radius: 2px; }
+}
+
+// ── Responsive ───────────────────────────────────────────────────────────────
+@media (max-width: $mobile-breakpoint) {
+  .cf-promo {
+    min-height: 300px;
+    padding: 40px $gutter-padding;
+  }
+
+  .cf-promo__content {
+    padding-left: 0;
+  }
+
+  .cf-promo__title { font-size: 28px; }
+}

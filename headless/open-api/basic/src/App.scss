@@ -1,151 +1,274 @@
-/*
-Copyright 2025 Adobe
-All Rights Reserved.
-
-NOTICE: Adobe permits you to use, modify, and distribute this file in
-accordance with the terms of the Adobe license agreement accompanying
-it.
-*/
-
 @use "sass:math";
-/* Normalize */
 @import '~normalize-scss/sass/normalize';
 @import './styles/variables';
 
+* { box-sizing: border-box; }
+
 body {
-    background-color: $body-bg;
-    font-family: $font-family-base;
-    margin: 0;
-    padding: 0;
-    font-size: $font-size-base;
-    text-align: left;
-    color: $text-color;
-    line-height: $line-height-base;
-    -webkit-font-smoothing: antialiased;
+  background-color: $body-bg;
+  font-family: $font-family-base;
+  margin: 0;
+  padding: 0;
+  font-size: $font-size-base;
+  color: $text-color;
+  line-height: $line-height-base;
+  -webkit-font-smoothing: antialiased;
 }
 
-// Headings
-// -------------------------
-
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
-line-height: $line-height-base;
-color: $text-color;
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  margin: 0 0 0.5em;
+  font-weight: $font-weight-bold;
+  color: $text-color;
 }
-
-h1, .h1,
-h2, .h2,
-h3, .h3 {
-font-family: $font-family-serif;
-font-weight: $font-weight-normal;
-margin-top: $line-height-computed;
-margin-bottom: math.div($line-height-computed, 2);
-}
-
-h4, .h4,
-h5, .h5,
-h6, .h6 {
-font-family: $font-family-sans-serif;
-text-transform: uppercase;
-font-weight: $font-weight-bold;
-}
-
-h1, .h1 { font-size: $font-size-h1; }
-h2, .h2 { font-size: $font-size-h2; }
-h3, .h3 { font-size: $font-size-h3; }
-h4, .h4 { font-size: $font-size-h4; }
-h5, .h5 { font-size: $font-size-h5; }
-h6, .h6 { font-size: $font-size-h6; }
+h1 { font-size: $font-size-h1; }
+h2 { font-size: $font-size-h2; }
+h3 { font-size: $font-size-h3; }
+h4 { font-size: $font-size-h4; }
 
 a {
   color: $link-color;
   text-decoration: none;
 }
 
-h1 a, h2 a, h3 a {
-    color: $text-color;
-}
-
-h1 u, h2 u, h3 u {
-    text-decoration: none;
-    border-bottom: 1px #ededed solid;
-}
-
-// Body text
-// -------------------------
-
 p {
-margin: 0 0 math.div($line-height-computed , 2);
-font-size: $font-size-base;
-line-height: $line-height-base + 0.75;
-text-align: justify;
+  margin: 0 0 1em;
+  line-height: $line-height-base;
 }
 
-
-ul {
-    list-style-position: inside;
-}
-
-ol, ul {
-    padding-left: 0;
-    margin-bottom: 0;
-}
-
-hr {
-    border: none;
-    border-bottom: 1px solid $gray-light;
-}
-
-button {
-  background-color: $black;
-  color: $white;
-  text-transform: uppercase;
-  font-size: $font-size-base;
-  font-family: $font-family-base;
-  border: none;
-  padding: 0.5em;
-  min-width: 4rem;
-  margin-right: 1rem;
-  cursor: pointer;
-
-  &:focus, &:active{
-    background-color: $white;
-    color: $black;
-    border: 1px solid $black;
-  }
-}
 .App {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1;
+}
+
+// ── Header ───────────────────────────────────────────────────────────────────
+.app-header {
+  background-color: $engie-dark-blue;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+.app-header__inner {
   max-width: $max-width;
   margin: 0 auto;
-  padding-left: 14px;
-  padding-right: 14px;
+  padding: 0 $gutter-padding;
+  display: flex;
+  align-items: center;
+  gap: 32px;
 }
 
-.logo {
-  width: 100px;
-  height: 100px;
-  margin: 10px 0px 10px 0px;
+.app-header__top .app-header__inner {
+  height: 68px;
 }
 
-// Error
-.error {
-  /*position: absolute;
-  top: 50%;
-  left: 0;*/
-  margin-top: 2em;
-  width: 100%;
-  text-align: left;
+.app-header__logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
 
-  .error__message {
-    color: $red;
+.app-header__logo-img {
+  height: 36px;
+  width: auto;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+.app-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+
+  a {
+    color: rgba($white, 0.8);
+    font-size: $font-size-base;
+    font-weight: $font-weight-bold;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 2px;
+    transition: background-color 0.2s, color 0.2s;
+
+    &:hover { background-color: rgba($white, 0.08); color: $white; }
+    &.active { background-color: rgba($white, 0.12); color: $white; }
   }
 }
 
-// Loading
-.loading {
-  position: absolute;
-  top: 40%;
-  width: 100%;
-  left: 0;
-  text-align: center;
+.app-header__actions {
+  margin-left: auto;
 }
+
+.app-header__cta {
+  display: inline-block;
+  background-color: $engie-blue;
+  color: $white;
+  font-size: $font-size-small;
+  font-weight: $font-weight-bold;
+  padding: 8px 20px;
+  border-radius: 2px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s;
+
+  &:hover { background-color: darken($engie-blue, 8%); color: $white; }
+}
+
+.app-header__subnav {
+  background-color: darken($engie-dark-blue, 5%);
+  border-top: 1px solid rgba($white, 0.08);
+
+  .app-header__inner {
+    height: 44px;
+    gap: 0;
+  }
+
+  a {
+    color: rgba($white, 0.65);
+    font-size: $font-size-small;
+    text-decoration: none;
+    padding: 0 16px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    border-bottom: 3px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+
+    &:hover { color: $white; }
+    &.active {
+      color: $white;
+      border-bottom-color: $engie-blue;
+    }
+  }
+}
+
+// ── Footer ───────────────────────────────────────────────────────────────────
+.app-footer {
+  background-color: $engie-dark-blue;
+  color: rgba($white, 0.8);
+  margin-top: auto;
+}
+
+.app-footer__inner {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0 $gutter-padding;
+  display: flex;
+  gap: 48px;
+}
+
+.app-footer__brand {
+  flex: 1.5;
+  padding: 48px 0;
+
+  p {
+    font-size: $font-size-small;
+    line-height: 1.6;
+    color: rgba($white, 0.6);
+    margin-top: 16px;
+    max-width: 280px;
+  }
+}
+
+.app-footer__logo {
+  height: 32px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+.app-footer__col {
+  flex: 1;
+  padding: 48px 0;
+
+  h4 {
+    color: $white;
+    font-size: $font-size-small;
+    font-weight: $font-weight-bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 16px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  a {
+    color: rgba($white, 0.6);
+    font-size: $font-size-small;
+    text-decoration: none;
+    transition: color 0.2s;
+
+    &:hover { color: $white; }
+  }
+}
+
+.app-footer__bottom {
+  border-top: 1px solid rgba($white, 0.1);
+
+  .app-footer__inner {
+    height: 52px;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0;
+  }
+
+  span {
+    font-size: 12px;
+    color: rgba($white, 0.4);
+  }
+}
+
+.app-footer__legal {
+  display: flex;
+  gap: 24px;
+
+  a {
+    font-size: 12px;
+    color: rgba($white, 0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+
+    &:hover { color: rgba($white, 0.8); }
+  }
+}
+
+// ── Responsive ───────────────────────────────────────────────────────────────
+@media (max-width: $tablet-breakpoint) {
+  .app-header__nav a { padding: 8px 10px; font-size: $font-size-small; }
+  .app-footer__inner { flex-wrap: wrap; gap: 24px; }
+  .app-footer__brand { flex: 100%; padding-bottom: 0; }
+  .app-footer__col { flex: calc(50% - 12px); padding-top: 16px; }
+}
+
+@media (max-width: $mobile-breakpoint) {
+  .app-header__nav { display: none; }
+  .app-footer__col { flex: 100%; padding: 8px 0; }
+  .app-footer__brand { padding: 32px 0 0; }
+}
+
+// ── Loading / Error ──────────────────────────────────────────────────────────
+.loading-state,
+.error-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  color: $gray;
+  font-size: $font-size-large;
+}
+
+.error-state { color: $red; }

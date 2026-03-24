@@ -1,25 +1,16 @@
-/*
-Copyright 2025 Adobe
-All Rights Reserved.
+import CFPromotion from './CFPromotion'
+import ArticleList from './ArticleList'
+import PromotionTeasers from './PromotionTeasers'
+import HeroBanner from './HeroBanner'
+import './Home.scss'
 
-NOTICE: Adobe permits you to use, modify, and distribute this file in
-accordance with the terms of the Adobe license agreement accompanying
-it.
-*/
-import React from "react";
-import Teams from "./Teams";
-import "./Home.scss";
-
-/***
- * Displays a grid of Team & People Link to find more details
- */
-function Home() {
+export default function Home() {
   return (
-    <div className="home">
-      <h2 className="home__title">WKND Teams</h2>
-      <Teams />
-    </div>
-  );
+    <main className="home">
+      <HeroBanner />
+      <CFPromotion />
+      <PromotionTeasers />
+      <ArticleList />
+    </main>
+  )
 }
-
-export default Home;
